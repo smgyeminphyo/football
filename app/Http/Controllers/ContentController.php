@@ -18,6 +18,7 @@ class ContentController extends Controller
     Public function index() {
 
         $data =  PlayMatch::select('*')->orderBy('play_time')->get();
+        // dd($data);
         return view('soccers.index', [
             'matches' => $data
             

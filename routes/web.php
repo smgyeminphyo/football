@@ -38,6 +38,15 @@ Route::get('/soccers/add', [ContentController::class, 'add']);
 
 Route::post('/soccers/add', [ContentController::class, 'create']);
 
+Route::get('/soccers/add/{id}', function($id) {
+    if($id == 6 || $id == 7)
+        $teams = \App\Models\Team::all();
+    else
+        $teams = \App\Models\Team::where('league_id', $id)->get();
+
+    return response()->json($teams);
+});
+
 //insert links
 Route::get('/match/insertLink/{id}', [MediaController::class, 'createLink']);
 

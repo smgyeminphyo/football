@@ -18,7 +18,7 @@
                         <td style="width:25%; vertical-align:top;">
                             <h6>{{$match->homeTeam->short_name}}
                             </h6>
-                            <img class="" src="{{url('/images').'/'.$match->league->short_name.'/'.$match->homeTeam->logo}}" alt=" {{$match->homeTeam->name}}" width="50" height="60px">
+                            <img class="" src="{{url('/images').'/'.$match->homeTeam->logo}}" alt=" {{$match->homeTeam->name}}" width="50" height="60px">
                         </td>
                         <td>
                             
@@ -41,7 +41,7 @@
             <td style="width:25%; vertical-align:top;">
                 <h6>{{$match->awayTeam->short_name}}</h6>
 
-                <img class="" src="{{url('/images').'/'.$match->league->short_name.'/'.$match->awayTeam->logo}}" alt="{{$match->awayTeam->name}}" width="50" height="60px">
+                <img class="" src="{{url('/images').'/'.$match->awayTeam->logo}}" alt="{{$match->awayTeam->name}}" width="50" height="60px">
             </td>
             </tr>
 
