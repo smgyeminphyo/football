@@ -6,10 +6,11 @@
 
     <div class=" bg-success py-3">
 
+
+    
+    
             @foreach ($matches as $match)
-
-
-           
+            @if(date("d-m-y h:i", strtotime($match['play_time'])+6000) >= (date("d-m-y h:i")) )
             <div class="card text-center  m-3">
                 <div class="bg-light h5">{{$match->league->name}}</div>
                 <table class=" table table-borderless">
@@ -18,19 +19,23 @@
                         <td style="width:25%; vertical-align:top;">
                             <h6>{{$match->homeTeam->short_name}}
                             </h6>
-                            <img class="" src="{{url('/images').'/'.$match->homeTeam->logo}}" alt=" {{$match->homeTeam->name}}" width="50" height="60px">
+                            <img class="" src="{{url('/images').'/'.$match->homeTeam->logo}}" alt=" {{$match->homeTeam->name}}" width="65px" height="60px">
                         </td>
                         <td>
-                            
-                            @if(date("y-m-d", strtotime($match['play_time'])) == date("y-m-d") )
-                            <div class=" text-primary">
-                                Live Now
-                            </div></br>
-                            <small>{{date("h:i-a", strtotime($match['play_time']))}}</small>
+                         
+                            @if((date("d-m-y h:i ")< date("d-m-y h:i ", strtotime($match['play_time'])+6000)) && date("d-m-y h:i ")>= date("d-m-y h:i ", strtotime($match['play_time'])))
+                            </br>
+                            <div class="btn btn-danger disabled text-light">
+                            <span class="spinner-grow spinner-grow-sm"></span>Live</div>
 
-                            @elseif(date("y-m-d", strtotime($match['play_time'])) > date("y-m-d"))
-                            <div class="text-muted">Live on</div>
-                            <small>{{date("y-m-d h:m  a", strtotime($match['play_time']))}}</small>
+                            @elseif(date("d-m-y", strtotime($match['play_time'])) > date("d-m-y"))
+                            <div class="btn btn-outline-info disabled text-muted">Live On</div>
+                            </br>
+                            <small>{{date("d-m-y / h:i  A", strtotime($match['play_time']))}}</small>
+
+                            @else
+                            <div class="btn btn-outline-info disabled text-muted">Live On</div></br>
+                            <small>{{date("h:i  A", strtotime($match['play_time']))}}</small>
 
                             @endif
 
@@ -41,7 +46,7 @@
             <td style="width:25%; vertical-align:top;">
                 <h6>{{$match->awayTeam->short_name}}</h6>
 
-                <img class="" src="{{url('/images').'/'.$match->awayTeam->logo}}" alt="{{$match->awayTeam->name}}" width="50" height="60px">
+                <img class="" src="{{url('/images').'/'.$match->awayTeam->logo}}" alt="{{$match->awayTeam->name}}" width="65px" height="60px">
             </td>
             </tr>
 
@@ -51,9 +56,9 @@
 
                 @foreach($match->link as $d)
                 @if($d->adFlg)
-                <a href="http://ouo.io/qs/jvevf9dU?s={{url("/view/$match->id/$d->id")}}" class=" bg-primary text-light rounded">Link</a>
+                <a href="http://ouo.io/qs/jvevf9dU?s={{url("/view/$match->id/$d->id")}}" class=" bg-primary text-light rounded">{{$d->name}}</a>
                 @else
-                <a href="{{url("/view/$match->id/$d->id")}}" class="bg-primary text-light rounded">link</a>
+                <a href="{{url("/view/$match->id/$d->id")}}" class="bg-primary text-light rounded">{{$d->name}}</a>
                 @endif
                 @endforeach
 
@@ -64,9 +69,10 @@
             </div>
         </div>
       
-
-        @endforeach
+        @endif
         
+        @endforeach
+       
     </div>
    
 </div>

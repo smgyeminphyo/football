@@ -11,6 +11,8 @@ class ViewController extends Controller
 {
     Public function index() {
         
+        date_default_timezone_set('Asia/Rangoon');
+
         $data = PlayMatch::select('*')->orderBy('play_time')->get();
 
         return view('soccers.userview', [

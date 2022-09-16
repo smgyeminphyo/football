@@ -30,7 +30,7 @@
                 <td>{{$match->league->name}}</td>
                 <td>{{$match->homeTeam->name}}</td>
                 <td>{{$match->awayTeam->name}}</td>
-                <td>{{$match->play_time}}</td>
+                <td>{{date("d-m-y / h:i  A", strtotime($match['play_time']))}}</td>
                 <td>
                     <a href="{{url("/match/insertLink/$match->id") }}"" class="btn btn-warning">INSERT</a>
                 </td>
