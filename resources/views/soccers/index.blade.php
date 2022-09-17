@@ -25,8 +25,8 @@
         @foreach ($matches as $match)
        
         <tbody>
-            <tr>
-               
+      
+            <tr>  
                 <td>{{$match->league->name}}</td>
                 <td>{{$match->homeTeam->name}}</td>
                 <td>{{$match->awayTeam->name}}</td>
@@ -40,8 +40,11 @@
                 <td>
                     <a href="{{ url("/match/delete/$match->id") }}" class="btn btn-danger" >delete</a>
                 </td>
+                
             </tr>
+            
         </tbody>
+       
             @endforeach
         </table>
      

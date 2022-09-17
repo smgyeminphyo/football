@@ -10,7 +10,7 @@
     
     
             @foreach ($matches as $match)
-            @if(date("d-m-y h:i", strtotime($match['play_time'])+6000) >= (date("d-m-y h:i")) )
+            @if(date("d-m-y H:i", strtotime($match['play_time'])+7200) >= (date("d-m-y H:i")) )
             <div class="card text-center  m-3">
                 <div class="bg-light h5">{{$match->league->name}}</div>
                 <table class=" table table-borderless">
@@ -23,7 +23,7 @@
                         </td>
                         <td>
                          
-                            @if((date("d-m-y h:i ")< date("d-m-y h:i ", strtotime($match['play_time'])+6000)) && date("d-m-y h:i ")>= date("d-m-y h:i ", strtotime($match['play_time'])))
+                            @if((date("d-m-y H:i ")< date("d-m-y H:i ", strtotime($match['play_time'])+7200)) && date("d-m-y H:i ")>= date("d-m-y H:i ", strtotime($match['play_time'])))
                             </br>
                             <div class="btn btn-danger disabled text-light">
                             <span class="spinner-grow spinner-grow-sm"></span>Live</div>
@@ -31,10 +31,11 @@
                             @elseif(date("d-m-y", strtotime($match['play_time'])) > date("d-m-y"))
                             <div class="btn btn-outline-info disabled text-muted">Live On</div>
                             </br>
-                            <small>{{date("d-m-y / h:i  A", strtotime($match['play_time']))}}</small>
+                            <small>{{date("d-m-y | h:i  A", strtotime($match['play_time']))}}</small>
 
                             @else
                             <div class="btn btn-outline-info disabled text-muted">Live On</div></br>
+                            Today :
                             <small>{{date("h:i  A", strtotime($match['play_time']))}}</small>
 
                             @endif

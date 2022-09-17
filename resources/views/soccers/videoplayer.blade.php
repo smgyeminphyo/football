@@ -4,7 +4,7 @@
 
 <div class="container py-4">
  
- <iframe class="live-video" src="{{$PlayLink}}" style=" width: 100%;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe> 
+ <iframe class="live-video" src="{{$PlayLink}}" autoplay="1" style=" width: 100%;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe> 
 </div>
 <style>
 .live-video {
