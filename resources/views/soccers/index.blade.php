@@ -27,7 +27,15 @@
         <tbody>
       
             <tr>  
-                <td>{{$match->league->name}}</td>
+                <td>
+                @if((date("d-m-y H:i ")< date("d-m-y H:i ", strtotime($match['play_time'])+7200)) && date(" d-m-y H:i ")>= date(" d-m-y H:i ", strtotime($match['play_time'])))
+
+                    {{$match->league->name}}
+                    <span class="d-none d-lg-inline badge bg-danger rounded-pill float-end">Live</span>
+                @else
+                    {{$match->league->name}}
+                @endif
+                </td>
                 <td>{{$match->homeTeam->name}}</td>
                 <td>{{$match->awayTeam->name}}</td>
                 <td>{{date("d-m-y / h:i  A", strtotime($match['play_time']))}}</td>

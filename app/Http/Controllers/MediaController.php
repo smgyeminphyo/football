@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Highlight;
 use App\Models\PlayMatch;
 use App\Models\MatchLink;
 use Illuminate\Http\Request;
@@ -46,5 +47,13 @@ class MediaController extends Controller
         }
 
         return redirect('/admin');
+    }
+    
+    public function highlight_play($id) {
+        $data = Highlight::find($id);
+        $link = $data->videoLink;
+        return view('soccers.videoplayer', [
+            'PlayLink' => $link
+        ]);
     }
 }

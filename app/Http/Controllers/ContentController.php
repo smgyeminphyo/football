@@ -7,6 +7,7 @@ use App\Models\Team;
 use App\Models\League;
 use App\Models\PlayMatch;
 use App\Models\MatchLink;
+use App\Models\Highlight;
 
 class ContentController extends Controller
 {
@@ -16,7 +17,8 @@ class ContentController extends Controller
     }
 
     Public function index() {
-
+        date_default_timezone_set('Asia/Rangoon');
+        
         $data =  PlayMatch::select('*')->orderBy('play_time')->get();
         // dd($data);
         return view('soccers.index', [
@@ -39,6 +41,8 @@ class ContentController extends Controller
         ]);
 
     }
+
+   
 
     Public function create() {
 
@@ -108,6 +112,35 @@ class ContentController extends Controller
         $link = MatchLink::find($id);
         $link->delete();
 
+        return back();
+    }
+
+    //highlight add
+
+    public function highlightADD() {
+        return view('soccers.highlight');
+    }
+
+    public function highlight_create() {
+        $validator = validator(request()->all(), [
+            'description' => 'required',
+            'videoLink' => 'required',
+           
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        $newHighlight = new Highlight;
+        $newHighlight->description = request()->description;
+        $newHighlight->videoLink = request()->videoLink;
+        $newHighlight->save();
+        return redirect ('/admin');
+    }
+
+    public function highlight_delete($id) {
+        $data = Highlight::find($id);
+        $data->delete();
         return back();
     }
 }

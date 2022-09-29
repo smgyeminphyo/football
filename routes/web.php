@@ -47,6 +47,12 @@ Route::get('/soccers/add/{id}', function($id) {
     return response()->json($teams);
 });
 
+//Highlights
+Route::get('/soccers/highlight', [ContentController::class, 'highlightADD']);
+Route::post('/soccers/highlight', [ContentController::class, 'highlight_create']);
+Route::get('/highlight/delete/{id}', [ContentController::class, 'highlight_delete']);
+Route::get('/highlight/play/{id}', [MediaController::class, 'highlight_play']);
+
 //insert links
 Route::get('/match/insertLink/{id}', [MediaController::class, 'createLink']);
 

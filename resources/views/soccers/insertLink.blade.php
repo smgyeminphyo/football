@@ -7,7 +7,8 @@
         <div class="card-body bg-light px-3">
             <form method="post">
                 @csrf
-                @for($x = 1; $x <= 10; $x++) <div class="row">
+                @for($x = 1; $x <= 10; $x++) 
+                <div class="row">
                     <label class="h5">Link {{$x}} </label>
 
                     <div class="col-sm-10">
