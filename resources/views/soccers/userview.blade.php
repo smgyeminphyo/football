@@ -133,8 +133,11 @@
                             <div>
                                 {{$match->homeTeam->short_name}}
                             </div>
-
-                            <img class="rounded-circle" src="{{url('/images').'/'.$match->homeTeam->logo}}" alt=" {{$match->homeTeam->name}}" width="60px" height="60px">
+                                @if($match->league_id == 8)
+                                <img class="rounded-circle" src="{{url('/images').'/'.$match->homeTeam->logo}}" alt=" {{$match->homeTeam->name}}" width="60px" height="60px">
+                                @else
+                                <img class="" src="{{url('/images').'/'.$match->homeTeam->logo}}" alt=" {{$match->homeTeam->name}}" width="70px" height="60px">
+                                @endif
                         </td>
                         <td>
 
@@ -164,9 +167,11 @@
                 <div>
                     {{$match->awayTeam->short_name}}
                 </div>
-
-                <img class="rounded-circle" src="{{url('/images').'/'.$match->awayTeam->logo}}" alt="{{$match->awayTeam->name}}" width="60px" height="60px">
-            </td>
+                        @if($match->league_id == 8)
+                        <img class="rounded-circle" src="{{url('/images').'/'.$match->awayTeam->logo}}" alt=" {{$match->awayTeam->name}}" width="60px" height="60px">
+                        @else
+                        <img class="" src="{{url('/images').'/'.$match->awayTeam->logo}}" alt=" {{$match->awayTeam->name}}" width="70px" height="60px">
+                        @endif </td>
             </tr>
 
 
